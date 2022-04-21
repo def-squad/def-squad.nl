@@ -24,8 +24,11 @@ html {
 }
 
 .banner {
-    padding-top: 0.3px;
-    height: 50vh;
+    height: 60vh;
+    background-image: url("/assets/images/working-on-laptop.jpg");
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover!important;
 }
 
 .logo {
@@ -36,9 +39,14 @@ html {
     padding: 4px;
 }
 
-.banner-image {
-    width: 100%;
-    height: 100%;
+.introduction {
+    padding: 5vh;
+    text-align: center;
+    line-height: 2rem;
+
+    h1 {
+        padding-bottom: 2vh;
+    }
 }
 
 .material-icons.md-100 { font-size: 100px; }
@@ -49,44 +57,75 @@ html {
     padding: 0;
 }
 
-.counters  {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    .container {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-gap: 30px;
-        text-align: center;
-        i {
-            margin-bottom: 5px;
+.info-menu {
+    align-content: center;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    .counters {
+        padding-top: 15px;
+        padding-bottom: 15px;
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 30px;
+            text-align: center;
+
+            i {
+                margin-bottom: 5px;
+            }
         }
-    }
-    .counter {
-        font-size: 45px;
-        margin: 10px 0;
+
+        .counter {
+            font-size: 45px;
+            margin: 10px 0;
+        }
     }
 }
 
+.grey-overlay {
+    background: rgba(0, 0, 0, 0.3);
+    height: 100%;
+    width: 100%;
+}
+
 .about-us {
-    img {
-        height: 80vh;
-        width: 100%;
-        position: absolute;
+    height: 60vh;
+    background-image: url("/assets/images/meeting.jpg");
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover!important;
+
+    .text-box {
+        justify-content: center;
+        display: flex;
+        padding-top: 30vh;
+        h1 {
+            color: white;
+            font-weight: bold;
+            font-size: 4rem;
+            line-height: 3.75rem;
+        }
     }
+}
+
+footer {
+    background-color: #212121;
+    height: 30vh;
+    color: white;
+    text-align: center;
+    padding-top: 15vh;
 }
 
 @media (max-width: 769px) {
     .logo {
         width: 20%;
     }
-    .counters {
-        .container {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-    .about-us {
-        img {
-            height: 60vh;
+    .info-menu {
+        .counters {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     }
 }
@@ -98,9 +137,11 @@ html {
     .logo {
         width: 25%;
     }
-    .counters {
-        .container {
-            grid-template-columns: repeat(1, 1fr);
+    .info-menu {
+        .counters {
+            .container {
+                grid-template-columns: repeat(1, 1fr);
+            }
         }
     }
 }

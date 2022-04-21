@@ -3,65 +3,87 @@ layout: default
 title: Home
 ---
 <main class="mdc-top-app-bar--fixed-adjust">
-  <div class="banner">
-      <img class="logo" src="assets/images/logo-cropped.svg">
-      <img class="banner-image" src="assets/images/Content-Writing.jpeg">
-  </div>
-</main>
-<div class="info-menu">
-  <section class="counters">
-    <div class="container">
-        <div>
-          <span class="material-icons md-100" >today</span>
-            <div class="counter" data-target="2022">0</div>
-            <h3>Begonnen</h3>
-        </div>
-        <div>
-          <span class="material-icons md-100" >history</span>
-            <div class="counter" data-target="50">0</div>
-            <h3>Jaar ervaring</h3>
-        </div>
-        <div>
-          <span class="material-icons md-100" >badge</span>
-            <div class="counter" data-target="3">0</div>
-            <h3>Werknemers</h3>
-        </div>
-        <div>
-          <span class="material-icons md-100" >question_mark</span>
-            <div class="counter" data-target="2000">0</div>
-            <h3>placeholder</h3>
+    <div class="banner">
+        <div class="grey-overlay">
+            <img class="logo" src="assets/images/logo-cropped.svg" alt="main-logo">
         </div>
     </div>
-  </section>
-</div>
-<div class="about-us">
-    <img src="assets/images/about-us.jpg">
-    <div class="text-box">
-      <h1>About us</h1>
-  </div>
+</main>
+
+<div class="introduction">
+    <h1>Lorem Ipsum</h1>
+    <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at viverra velit. Fusce at porta massa, in suscipit enim. Ut diam risus, accumsan convallis purus ac, pharetra congue lacus. Suspendisse mattis gravida ante, in tristique nisi ullamcorper non. Nunc dolor dolor, convallis ac semper sit amet, molestie ac felis. Quisque vel aliquet nulla. Suspendisse hendrerit mauris suscipit, facilisis justo ac, fringilla dui. In congue, nisl vitae tincidunt laoreet, ex odio consectetur felis, nec placerat ligula arcu quis ipsum. Phasellus vulputate neque vel sollicitudin mattis. Cras vel augue sagittis, pretium neque at, suscipit lorem. Nam hendrerit tellus vehicula, pharetra massa non, ultricies est. Nam viverra vitae mauris at pretium. Suspendisse mollis aliquam placerat.</h3>
 </div>
 
+<div class="about-us">
+    <div class="text-box grey-overlay">
+        <h1>Over ons</h1>
+    </div>
+</div>
+
+
+<div class="info-menu">
+    <section class="counters">
+        <div class="container">
+            <div>
+                <span class="material-icons md-100">today</span>
+                <div class="counter" data-target="2022">0</div>
+                <h3>Begonnen</h3>
+            </div>
+            <div>
+                <span class="material-icons md-100">history</span>
+                <div class="counter" data-target="50">0</div>
+                <h3>Jaar ervaring</h3>
+            </div>
+            <div>
+                <span class="material-icons md-100">badge</span>
+                <div class="counter" data-target="3">0</div>
+                <h3>Werknemers</h3>
+            </div>
+            <div>
+                <span class="material-icons md-100">question_mark</span>
+                <div class="counter" data-target="2000">0</div>
+                <h3>placeholder</h3>
+            </div>
+        </div>
+    </section>
+</div>
 
 <script>
- const counters = document.querySelectorAll('.counter');
+    const counters = document.querySelectorAll('.counter');
+    onVisible(document.querySelector(".info-menu").querySelector(".counter"), () => startCounters());
 
- for (let n of counters) {
-    const updateCount = () => {
-        const target = +n.getAttribute('data-target');
-        const count = +n.innerText;
-        const divider = 100;
-        const speed = 0.4; // 1000 millisecond => 1 second;
+    function onVisible(element, callback) {
+        new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if(entry.intersectionRatio > 0) {
+                    callback(element);
+                    observer.disconnect();
+                }
+            });
+        }).observe(element);
+    }
+    
+    function startCounters() {
+        for (let n of counters) {
+            const updateCount = () => {
+                const target = +n.getAttribute('data-target');
+                const count = +n.innerText;
+                const divider = 400;
+                const speed = 0.4;
 
-        const inc = target / divider;
+                const inc = target / divider;
 
-        if (count < target) {
-            n.innerText = Math.ceil(count + inc);
-            setTimeout(updateCount, speed);
-        } else {
-            n.innerText = target;
+                if (count < target) {
+                    n.innerText = Math.ceil(count + inc);
+                    setTimeout(updateCount, speed);
+                } else {
+                    n.innerText = target;
+                }
+            };
+
+            updateCount();
         }
-    };
+    }
 
-    updateCount();
-}
 </script>
